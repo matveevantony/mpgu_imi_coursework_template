@@ -1,0 +1,44 @@
+\ProvidesPackage{packages}
+
+% настройки локализации
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[T2A]{fontenc}
+
+% размеры
+\usepackage{geometry}
+\geometry{left=3cm}
+\geometry{right=1.5cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+
+\usepackage{tocloft} % оглавление
+\usepackage[square,numbers,sort&compress]{natbib} % список литературы
+\usepackage{fancyhdr} % колонтитулы
+\usepackage{titlesec} % заголовки
+\usepackage{indentfirst} % первый абзац
+\usepackage[onehalfspacing]{setspace} % 1,5 интервал
+\usepackage{icomma} % правильная десятичная и списочная запятая
+\usepackage{enumitem} % списки
+\usepackage{listings} % листинги кода
+\usepackage{tabularx} % продвинутые таблицы
+\usepackage{longtable} % многостраничные таблицы
+\usepackage{multirow} % объединение строк и столбцов в таблицах
+\usepackage{hhline} % двойная горизонтальная линия в таблицах
+\usepackage{caption} % подписи рисунков, таблиц и прочих объектов
+\usepackage[pdftitle={<тема курсовой работы>}, pdfauthor={<автор работы>}, bookmarks=true,colorlinks=true,linkcolor=black,citecolor=black, urlcolor=black]{hyperref} % интерактивные ссылки
+\usepackage{textcase} % корректный перевод символов между верхним и нижним регистрами
+\usepackage{graphicx} % графика
+\usepackage{amsthm} % обозначения теорем, определений и т.п.
+\usepackage{siunitx} % форматы чисел и единиц измерения
+
+% векторная графика с TiKz
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tkz-euclide}
+% \usepackage{pgf-pie}
+\usetikzlibrary{calc, decorations.pathmorphing, decorations.markings, shapes, arrows.meta,positioning}
+
+% продвинутая математика
+\usepackage{amsmath}
+\usepackage{amssymb}

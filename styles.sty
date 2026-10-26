@@ -1,0 +1,217 @@
+\ProvidesPackage{styles}
+
+% колонтитулы
+\fancypagestyle{fancy}
+{
+	\fancyhf{}
+	\cfoot{\thepage}
+}
+
+% размер абзацного отступа
+%\setlength{\parindent}{2em}
+
+% стиль заголовков глав
+\titleformat{\section}
+{\filcenter}
+{\bf\thesection.}
+{5pt}{\normalsize\bfseries}{}
+
+% стиль заголовков пунктов
+\titleformat{\subsection}
+{\filcenter}
+{\bf\thesubsection.}
+{5pt}{\normalsize\bfseries}{}
+
+% стиль заголовков подпунктов
+\titleformat{\subsubsection}
+{\filcenter}
+{\bf\thesubsubsection.}
+{5pt}{\normalsize\bfseries}{}
+
+% стиль оглавления
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftsecfont}{\normalsize\normalfont}
+\renewcommand{\cftsecpagefont}{\normalsize\normalfont}
+\renewcommand{\cftsecnumwidth}{17pt}
+\renewcommand{\cftbeforesecskip}{0pt}
+\cftsetindents{subsection}{17pt}{17pt}
+\renewcommand{\cftbeforesubsecskip}{0pt}
+\renewcommand{\cftsubsecnumwidth}{25pt}
+\cftsetindents{subsubsection}{43pt}{43pt}
+\renewcommand{\cftbeforesubsubsecskip}{0pt}
+\renewcommand{\cftsubsubsecnumwidth}{36pt}
+\cftsetrmarg{25pt}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand{\cftsecdotsep}{2}
+\renewcommand{\cftsubsecdotsep}{2}
+\renewcommand{\cftsubsubsecdotsep}{2}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftsubsubsecaftersnum}{.}
+\cftsetpnumwidth{20pt}
+
+% стили определений, теорем и лемм
+\newtheoremstyle{def}{0em}{0em}{}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}{}
+\newtheoremstyle{thm}{0em}{0em}{\itshape}{}{\bfseries}{.}{5pt plus 1pt minus 1pt}{}
+\theoremstyle{def}
+\newtheorem{definition}{Определение}
+\theoremstyle{thm}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{clause}{Утверждение}
+\newtheorem{axiom}{Аксиома}
+\renewenvironment{proof}{\noindent\textit{Доказательство:}\par}{\hfill$\blacksquare$}
+
+% стиль заголовка списка литературы
+\renewcommand{\bibsection}{\section*{\MakeTextUppercase{Список литературы}}}
+
+% величина отступа между элементами списка литературы
+\setlength{\bibsep}{0pt}
+
+% настройка счётчика и заголовов приложений
+\newcounter{appendicesnum}
+\newcommand*\makeAdditionTitle[1]{
+	\refstepcounter{appendicesnum}
+	\label{add:#1}
+	\begin{flushright}
+		\textbf{ПРИЛОЖЕНИЕ \theappendicesnum{}}
+	\end{flushright}
+}
+
+% настройка отступов в списках
+\setlist[enumerate]{noitemsep,nolistsep}
+\setlist[itemize]{noitemsep,nolistsep}
+
+% нумерованный список с кириллическими буквами
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}
+\makeatother
+
+% стиль подписей рисунков
+\DeclareCaptionLabelFormat{fig}{Рисунок #2}
+\DeclareCaptionFont{figfont}{\centering\rmfamily}
+\captionsetup[figure]{labelformat=fig,labelsep=period,font=figfont}
+
+% стиль подписей таблиц
+\DeclareCaptionLabelFormat{table}{Таблица #2}
+\DeclareCaptionFont{table}{\centering\rmfamily}
+\captionsetup[table]{labelformat=table,labelsep=period,font=table}
+
+% стиль подписей листингов
+\DeclareCaptionLabelFormat{lstlisting}{Листинг #2}
+\DeclareCaptionFont{lstlisting}{\centering\rmfamily}
+\captionsetup[lstlisting]{labelformat=lstlisting,labelsep=period,font=table}
+
+% стиль листингов кода
+\definecolor{DocGreen}{rgb}{0.4, 0.8, 0.4}
+\definecolor{DocBlue}{rgb}{0.39, 0.69, 0.96}
+\definecolor{JavaColor}{rgb}{0.8, 0.7, 0.44}
+\definecolor{CodeGreen}{rgb}{0, 0.6, 0}
+\definecolor{CodeGray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{CodeOrange}{rgb}{1, 0.49, 0}
+\definecolor{CodeBackground}{rgb}{0.95, 0.95, 0.96}
+\lstdefinestyle{MyCodeStyle}{
+	backgroundcolor=\color{CodeBackground},
+	commentstyle=\color{CodeGray},
+	keywordstyle=\color{CodeOrange},
+	numberstyle=\color{CodeGray}\footnotesize,
+	stringstyle=\color{CodeGreen},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=t,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=4,
+	xleftmargin=10pt,
+	texcl=true,
+}
+\lstset{style=MyCodeStyle}
+
+% настройки векторной графики TiKz
+\pgfplotsset{compat=newest}
+
+% диаграммы в TiKz
+\makeatletter
+
+\tikzstyle{chart}=[
+legend label/.style={font={\scriptsize},anchor=west,align=left},
+legend box/.style={rectangle, draw, minimum size=5pt},
+axis/.style={black,semithick,->},
+axis label/.style={anchor=east,font={\tiny}},
+]
+
+\tikzstyle{pie chart}=[
+chart,
+slice/.style={line cap=round, line join=round, very thick,draw=white},
+pie title/.style={font={\bf}},
+slice type/.style 2 args={
+	##1/.style={fill=##2},
+	values of ##1/.style={}
+}
+]
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\sisetup{
+	output-decimal-marker={,},
+	group-separator={\,},
+}
+
+\newcommand{\pie}[3][]{
+	\begin{scope}[#1]
+		\pgfmathsetmacro{\curA}{90}
+		\pgfmathsetmacro{\r}{1}
+		\def\c{(0,0)}
+		\node[pie title] at (90:1.3) {#2};
+		\foreach \v/\s in{#3}{
+			\pgfmathsetmacro{\deltaA}{\v/100*360}
+			\pgfmathsetmacro{\nextA}{\curA + \deltaA}
+			\pgfmathsetmacro{\midA}{(\curA+\nextA)/2}
+			
+			\path[slice,\s] \c
+			-- +(\curA:\r)
+			arc (\curA:\nextA:\r)
+			-- cycle;
+			\pgfmathsetmacro{\d}{max((\deltaA * -(.5/50) + 1) , .5)}
+			
+			\begin{pgfonlayer}{foreground}
+				\path \c -- node[pos=\d,pie values,values of \s]{\SI{\v}\,\%} +(\midA:\r);
+			\end{pgfonlayer}
+			
+			\global\let\curA\nextA
+		}
+	\end{scope}
+}
+
+\newcommand{\legend}[2][]{
+	\begin{scope}[#1]
+		\path
+		\foreach \n/\s in {#2}
+		{
+			++(0,-6pt) node[\s,legend box] {} +(3pt,0) node[legend label] {\n}
+		}
+		;
+	\end{scope}
+}
+
+% математическое окружение для совокупностей
+\makeatletter
+\newenvironment{sqcases}{%
+	\matrix@check\sqcases\env@sqcases
+}{%
+	\endarray\right.%
+}
+\def\env@sqcases{%
+	\let\@ifnextchar\new@ifnextchar
+	\left\lbrack
+	\def\arraystretch{1.2}%
+	\array{@{}l@{\quad}l@{}}%
+}
+\makeatother
